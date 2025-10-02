@@ -47,84 +47,36 @@ $posts = [
         ]
     ],
 ];
+
 // php artisan serve
-
-//// 1
-//Route::get('/posts', function () use ($posts) {
-//    $response = '';
-//    foreach ($posts as $post) {
-//        $response .= "<h3>{$post['title']}</h3><p>{$post['content']}</p>";
-//    }
-//    return $response;
-//}) ->name('posts.index');
-//
-//// 2
-//Route::get('/posts/{postId}', function ($id) use ($posts) {
-//    return "<h3>{$posts[$id]['title']}</h3><p>{$posts[$id]['content']}</p>";
-//});
-//
-//// 3
-//Route::get('/posts/author/{postId}/{authorId}', function (int $postId, int $authorId) use ($posts) {
-//    if(isset($posts[$postId]['authors'][$authorId])) { // isset - ar kintamasis egzistuoja
-//        $author = $posts[$postId]['authors'][$authorId];
-//        return "<h3>{$posts[$postId]['title']}</h3><p>Author: {$author['name']} {$author['surname']}</p>";
-//    }
-//    return 'Record not found';
-//}) ->name('posts.author');
-//// dd() - debug (dump and die)
-//// dump()
-//
-//// 4
-//Route::get('/posts/newest/{isNew}', function (bool $isNew = false) use ($posts) {
-//    $response = '';
-//    foreach ($posts as $post) {
-//        if ($isNew) {
-//            if ($post['isNew']) {
-//                $response .= "<h3>{$post['title']}</h3><p>{$post['content']}</p>";
-//            }
-//        } else {
-//            $response .= "<h3>{$post['title']}</h3><p>{$post['content']}</p>";
-//        }
-//    }
-//    return $response;
-//}) ->name('posts.newest');
-
+// php artisan make:view layouts.app
 // 5
 Route::prefix('posts')->name('posts.')->group(function () use ($posts) {
     Route::get('/', function () use ($posts) {
-        $response = '';
-        foreach ($posts as $post) {
-            $response .= "<h3>{$post['title']}</h3><p>{$post['content']}</p>";
-        }
-        return $response;
+        return view('posts.index', ['posts' => $posts]);
     })->name('index');
 
     Route::get('newest/{isNew?}', function (bool $isNew = false) use ($posts) { // isNew? - ? neprivalomas parametras
-        $response = '';
+        $formattedPosts = [];
         foreach ($posts as $post) {
             if ($isNew) {
                 if ($post['isNew']) {
-                    $response .= "<h3>{$post['title']}</h3><p>{$post['content']}</p>";
+                    $formattedPosts[] = $post;
                 }
             } else {
-                $response .= "<h3>{$post['title']}</h3><p>{$post['content']}</p>";
+                $formattedPosts[] = $post;
             }
         }
-        return $response;
+        return view('posts.index', ['posts' => $formattedPosts]);
     })->name('newest');
 
     Route::get('{id}', function (int $id) use ($posts) {
-        if (isset($posts[$id])) {
-            return "<h3>{$posts[$id]['title']}</h3><p>{$posts[$id]['content']}</p>";
-        }
-        return 'Post not found';
+        abort_if(!isset($posts[$id]), 404);
+        return view('posts.show', ['post' => $posts[$id]]);
     })->name('show');
 
-    Route::get('author/{postId}/{authorId}', function (int $postId, int $authorId) use ($posts) {
-        if (isset($posts[$postId]['authors'][$authorId])) { // isset - ar kintamasis egzistuoja
-            $author = $posts[$postId]['authors'][$authorId];
-            return "<h3>{$posts[$postId]['title']}</h3><p>Author: {$author['name']} {$author['surname']}</p>";
-        }
-        return 'Record not found';
+    Route::get('{postId}/author/{authorId}', function (int $postId, int $authorId) use ($posts) {
+        abort_if(!isset($posts[$postId]['authors'][$authorId]), 404);
+        return view('posts.author', ['post' => $posts[$postId], 'author' => $posts[$postId]['authors'][$authorId]]);
     })->name('author');
 });
