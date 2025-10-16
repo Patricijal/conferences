@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ArticlesController;
 use Illuminate\Support\Facades\Route;
 use PharIo\Manifest\Author;
 
@@ -150,3 +151,5 @@ route::prefix('/user')->name('user.')->group(function () use ($users) {
         // {"limit":"10","page":"2"}
     });
 });
+
+Route::resource('articles', ArticlesController::class)->only(['index', 'show']);
