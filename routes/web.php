@@ -152,4 +152,6 @@ route::prefix('/user')->name('user.')->group(function () use ($users) {
     });
 });
 
-Route::resource('articles', ArticlesController::class)->only(['index', 'show']);
+Route::resource('articles', ArticlesController::class)->only(['index', 'show', 'create', 'store']);
+//Route::get('articles/create', [ArticlesController::class, 'create'])->name('articles.create');
+//Route::post('articles/store', [ArticlesController::class, 'store'])->name('articles.store');
