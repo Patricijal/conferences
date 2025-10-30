@@ -53,6 +53,11 @@ class ArticlesController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
+        $request->validate([
+            'title' => 'required|min:5|max:20',
+            'content' => 'required|min:10'
+        ]);
+
         $article = new Article();
         $article->title = $request->input('title');
         $article->content = $request->input('content');
