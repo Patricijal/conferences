@@ -23,6 +23,7 @@
         <br>
         <div>
             <input type="submit" value="Create">
+            <button type="submit">{{ __('app.article.create_button') }}</button>
         </div>
     </form>
 @endsection

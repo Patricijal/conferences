@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreArticleRequest;
 use App\Models\Article;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -51,19 +52,14 @@ class ArticlesController extends Controller
      * @param Request $request
      * @return RedirectResponse
      */
-    public function store(Request $request): RedirectResponse
+    public function store(StoreArticleRequest $request, Article $article): RedirectResponse
     {
-        $request->validate([
-            'title' => 'required|min:5|max:20',
-            'content' => 'required|min:10'
-        ]);
+        $validated = $request->validated();
+        $articleItem = $article->create($validated);
 
-        $article = new Article();
-        $article->title = $request->input('title');
-        $article->content = $request->input('content');
-        $article->save();
+        $request->session()->flash('status', 'Article created!');
 
-        return redirect()->route('articles.show', ['article' => $article->id]);
+        return redirect()->route('articles.show', ['article' => $articleItem->id]);
     }
 
     /**
