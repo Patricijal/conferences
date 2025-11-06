@@ -152,6 +152,10 @@ route::prefix('/user')->name('user.')->group(function () use ($users) {
     });
 });
 
-Route::resource('articles', ArticlesController::class)->only(['index', 'show', 'create', 'store']);
+Route::resource('articles', ArticlesController::class);
 //Route::get('articles/create', [ArticlesController::class, 'create'])->name('articles.create');
 //Route::post('articles/store', [ArticlesController::class, 'store'])->name('articles.store');
+
+// react / Vue.js (frontend)
+// laravel (backend)
+// frontend <-> backend - API / Inertia / livewire ajax Js i div ikisa turinio blokus

@@ -31,9 +31,9 @@ class ArticlesController extends Controller
      */
     public function index(): View
     {
-        //$article = new Article();
-        //return view('articles.index', ['articles' => $article->all()]);
-        return \view('articles.index');
+        $article = new Article();
+        return view('articles.index', ['articles' => $article->all()]);
+//        return \view('articles.index');
     }
 
     /**
@@ -77,25 +77,44 @@ class ArticlesController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(int $id)
     {
-        //
+        $article = Article::findOrFail($id);
+        return view('articles.edit', ['article' => $article]);
     }
 
     /**
      * Update the specified resource in storage.
+     *
+     * @param StoreArticleRequest $request
+     * @param int $id
+     * @return RedirectResponse
      */
-    public function update(Request $request, string $id)
+    public function update(StoreArticleRequest $request, int $id): RedirectResponse
     {
-        //
+        $article = (new Article())->findOrFail($id);
+        $validated = $request->validated();
+        $article->fill($validated);
+        $article->save();
+
+        $request->session()->flash('status', 'Article updated!');
+
+        return redirect()->route('articles.show', ['article' => $article->id]);
     }
 
     /**
      * Remove the specified resource from storage.
+     *
+     * @param int $id
+     * @return RedirectResponse
      */
-    public function destroy(string $id)
+    public function destroy(int $id): RedirectResponse
     {
-        //
+        $article = (new Article())->findOrFail($id);
+        $article->delete();
+
+        session()->flash('status', 'Article deleted!');
+        return redirect()->route('articles.index');
     }
 }
 
