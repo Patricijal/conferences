@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ArticlesController;
+use App\Http\Controllers\CatsController;
 use Illuminate\Support\Facades\Route;
 use PharIo\Manifest\Author;
 
@@ -8,12 +9,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 
-Route::get('/', static function () {
-    return 'Welcome to the Home page';
-});
+//Route::get('/', static function () {
+//    return 'Welcome to the Home page';
+//});
 
 Route::get('/contact', static function () {
     return 'Contact';
@@ -128,9 +129,9 @@ $users = [
     ],
 ];
 
-Route::get('/', function () {
-    return 'Welcome to the Home page';
-})->name('dashboard');
+//Route::get('/', function () {
+//    return 'Welcome to the Home page';
+//})->name('dashboard');
 
 route::prefix('/user')->name('user.')->group(function () use ($users) {
     Route::get('{id}', function ($id) use ($users) {
@@ -159,3 +160,9 @@ Route::resource('articles', ArticlesController::class);
 // react / Vue.js (frontend)
 // laravel (backend)
 // frontend <-> backend - API / Inertia / livewire ajax Js i div ikisa turinio blokus
+
+Route::resource('cats', CatsController::class)->only(['index', 'show']);
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

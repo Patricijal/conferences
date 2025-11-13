@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.appcustom')
 
 @section('content')
     @if(session('status'))
