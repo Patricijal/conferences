@@ -9,4 +9,9 @@
     <img src="{{ asset('cat-images/' . $cat['image_path']) }}"
          alt="{{ $cat['name'] }}"
          height="300">
+
+    <!-- Back button -->
+    <a href="{{ route('cats.index') }}">
+        <button type="button" class="btn btn-outline btn-accent">Back To Cats</button>
+    </a>
 @endsection
