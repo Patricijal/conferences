@@ -18,59 +18,65 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
+        <div class="navbar bg-base-100 shadow-sm sticky top-0 z-50">
+            <div class="navbar-start">
+                <!-- Brand/Logo -->
+                <a class="btn btn-ghost text-xl" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+            </div>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav me-auto">
+            <!-- Desktop Navigation -->
+            <div class="navbar-center hidden lg:flex">
+                <ul class="menu menu-horizontal px-1 flex gap-4">
+                    <!-- Add your navigation items here if needed -->
+                    <li>
+                        <a class="btn btn-ghost text-xl" href="{{ route('cats.index') }}">Browse Cats</a>
+                    </li>
+                    <li>
+                        <a class="btn btn-primary text-xl" href="{{ route('cats.create') }}">Add Cat</a>
+                    </li>
+                </ul>
+            </div>
 
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ms-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                            @if (Route::has('login'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                </li>
-                            @endif
-
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
+            <!-- Desktop Authentication Links -->
+            <div class="navbar-end hidden lg:flex">
+                <ul class="menu menu-horizontal px-1 flex gap-4">
+                    @guest
+                        @if (Route::has('login'))
+                            <li><a href="{{ route('login') }}" class="btn btn-ghost text-xl">{{ __('Login') }}</a></li>
+                        @endif
+                        @if (Route::has('register'))
+                            <li><a href="{{ route('register') }}" class="btn btn-primary text-xl">{{ __('Register') }}</a></li>
+                        @endif
+                    @else
+                        <div class="dropdown dropdown-end">
+                            <div tabindex="0" role="button" class="btn btn-ghost rounded-btn">
+                                {{ Auth::user()->name }}
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-1" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                </svg>
+                            </div>
+                            <ul tabindex="0" class="menu dropdown-content z-[1] p-2 shadow bg-base-100 rounded-box w-52 mt-4">
+                                <li>
+                                    <a href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+                                       document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
-                    </ul>
-                </div>
+                                </li>
+                            </ul>
+                        </div>
+                    @endguest
+                </ul>
             </div>
-        </nav>
+        </div>
+        <!-- Logout Form -->
+        @auth
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                @csrf
+            </form>
+        @endauth
 
         <main class="py-4">
             @yield('content')
