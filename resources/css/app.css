@@ -17,4 +17,6 @@
 @source '../**/*.blade.php';
 @source '../**/*.js';
 
-@plugin "daisyui";
+@plugin "daisyui" {
+    themes: silk --default, dark --prefersdark;
+}

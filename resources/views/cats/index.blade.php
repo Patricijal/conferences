@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.appdaisyui')
 
 @section('content')
     @foreach($cats as $cat)
@@ -9,7 +9,7 @@
         <h4>{{ $cat['description'] }}</h4>
         <img src="{{ asset('cat-images/' . $cat['image_path']) }}"
              alt="{{ $cat['name'] }}"
-             height="300">
+             height="200">
         <br>
     @endforeach
 @endsection
