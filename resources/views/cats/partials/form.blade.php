@@ -1,4 +1,4 @@
-<fieldset class="fieldset bg-base-200 border-base-300 rounded-box border p-6 max-w-md">
+<fieldset class="fieldset bg-base-200 border-base-300 w-300 rounded-box border p-6 max-w-md">
     <legend class="fieldset-legend text-lg font-semibold">Cat Information</legend>
 
     <div class="space-y-4">
