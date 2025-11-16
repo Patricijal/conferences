@@ -1,4 +1,4 @@
-@extends('layouts.appcustom')
+@extends('layouts.app')
 
 @section('content')
     @foreach($cats as $cat)

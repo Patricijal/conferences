@@ -1,4 +1,4 @@
-@extends('layouts.appcustom')
+@extends('layouts.app')
 
 @section('content')
     <h1>{{ $cat['name'] }}</h1>
