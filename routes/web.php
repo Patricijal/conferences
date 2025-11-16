@@ -161,7 +161,7 @@ Route::resource('articles', ArticlesController::class);
 // laravel (backend)
 // frontend <-> backend - API / Inertia / livewire ajax Js i div ikisa turinio blokus
 
-Route::resource('cats', CatsController::class)->only(['index', 'show', 'create', 'store']);
+Route::resource('cats', CatsController::class);
 
 Auth::routes();
 

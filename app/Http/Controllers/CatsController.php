@@ -108,6 +108,18 @@ class CatsController extends Controller
         // Return only the filename for database
         return $filename;
     }
+    /**
+     * Remove old image file if it exists
+     */
+    private function removeOldImage($filename): void
+    {
+        if ($filename) {
+            $filePath = public_path('cat-images/' . $filename);
+            if (File::exists($filePath)) {
+                File::delete($filePath);
+            }
+        }
+    }
 
     /**
      * Display the specified resource.
@@ -135,6 +147,17 @@ class CatsController extends Controller
     {
         $cat = (new Cat())->findOrFail($id);
         $validated = $request->validated();
+
+        if ($request->hasFile('image_path')) {
+            // Remove old image if it exists
+            $this->removeOldImage($cat->image_path);
+            // Store new image
+            $validated['image_path'] = $this->storeImage($request->file('image_path'));
+        } else {
+            // Keep the existing image if no new image is uploaded
+            unset($validated['image_path']);
+        }
+
         $cat->fill($validated);
         $cat->save();
 
@@ -149,6 +172,7 @@ class CatsController extends Controller
     public function destroy(int $id)
     {
         $cat = (new Cat())->findOrFail($id);
+        $this->removeOldImage($cat->image_path);
         $cat->delete();
 
         session()->flash('status', 'Cat removed!');

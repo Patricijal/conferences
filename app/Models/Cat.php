@@ -12,7 +12,8 @@ class Cat extends Model
     protected $fillable = [
         'name',
         'breed',
-        'age', 'gender',
+        'age',
+        'gender',
         'description',
         'image_path'
     ];

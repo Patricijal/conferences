@@ -1,14 +1,15 @@
 @extends('layouts.appdaisyui')
 
-@section('name', 'Cat Form')
+@section('name', 'Cat Edit Form')
 
 @section('content')
     <div class="flex flex-col items-center">
-        <form action="{{ route('cats.store') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('cats.update', ['cat' => $cat->id]) }}" method="POST" enctype="multipart/form-data">
             @csrf
+            @method('PUT')
             @include('cats.partials.form')
             <div class="mt-6">
-                <input type="submit" class="btn btn-primary w-full" value="Create" id="submit-btn">
+                <input type="submit" class="btn btn-primary w-full" value="Update" id="submit-btn">
             </div>
         </form>
 
@@ -30,4 +31,3 @@
         </dialog>
     </div>
 @endsection
-

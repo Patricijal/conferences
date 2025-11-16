@@ -1,15 +1,12 @@
 @extends('layouts.appdaisyui')
 
 @section('content')
-    @foreach($cats as $cat)
-        <h1>{{ $cat['name'] }}</h1>
-        <h2>{{ $cat['breed'] }}</h2>
-        <h3>{{ $cat['age'] }}</h3>
-        <h3>{{ $cat['gender'] }}</h3>
-        <h4>{{ $cat['description'] }}</h4>
-        <img src="{{ asset('cat-images/' . $cat['image_path']) }}"
-             alt="{{ $cat['name'] }}"
-             height="200">
-        <br>
-    @endforeach
+    <h2>List of cats</h2>
+    @if(session('status'))
+        <div style="background-color: green; color: lime;">{{ session('status') }}</div>
+    @endif
+    <a href="{{ route('cats.create') }}">
+        <button type="button">Add cat</button>
+    </a>
+    @each('cats.partials.list', $cats, 'cat')
 @endsection

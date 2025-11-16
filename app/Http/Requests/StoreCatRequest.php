@@ -27,7 +27,7 @@ class StoreCatRequest extends FormRequest
             'age' => 'required|string|max:50',
             'gender' => 'required|in:Male,Female',
             'description' => 'nullable|string|max:500',
-            'image_path' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image_path' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp,bmp,svg|max:2048',
         ];
     }
 }
