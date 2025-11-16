@@ -6,7 +6,7 @@
         <div style="background-color: green; color: lime;">{{ session('status') }}</div>
     @endif
     <a href="{{ route('cats.create') }}">
-        <button type="button">Add cat</button>
+        <button type="button" class="btn btn-primary">Add cat</button>
     </a>
     @each('cats.partials.list', $cats, 'cat')
 @endsection

@@ -112,24 +112,6 @@
                 />
             </div>
 
-{{--            <!-- Simplified Modal - just the image -->--}}
-{{--            <dialog id="image-modal" class="modal">--}}
-{{--                <div class="modal-box p-0 bg-transparent shadow-none max-w-none w-auto">--}}
-{{--                    <form method="dialog">--}}
-{{--                        <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2 bg-base-100/80 backdrop-blur-sm">✕</button>--}}
-{{--                    </form>--}}
-{{--                    <img--}}
-{{--                        id="modal-image"--}}
-{{--                        src="#"--}}
-{{--                        alt="Full size preview"--}}
-{{--                        class="max-w-[90vw] max-h-[90vh] object-contain rounded-lg"--}}
-{{--                    />--}}
-{{--                </div>--}}
-{{--                <form method="dialog" class="modal-backdrop bg-black/70">--}}
-{{--                    <button>close</button>--}}
-{{--                </form>--}}
-{{--            </dialog>--}}
-
             <input
                 type="file"
                 id="image-input"
