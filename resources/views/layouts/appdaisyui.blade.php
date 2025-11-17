@@ -20,16 +20,16 @@
     <div id="app">
         <div class="navbar bg-base-100 shadow-sm sticky top-0 z-50">
             <div class="navbar-start">
-                <!-- Brand/Logo -->
-                <a class="btn btn-ghost text-xl" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
                 <label class="swap swap-flip text-5xl">
                     <!-- this hidden checkbox controls the state -->
                     <input type="checkbox" />
                     <div class="swap-on">😺</div>
                     <div class="swap-off">😻</div>
                 </label>
+                <!-- Brand/Logo -->
+                <a class="btn btn-ghost text-xl" href="{{ url('/') }}">
+                    {{ config('app.name', 'Laravel') }}
+                </a>
             </div>
 
             <!-- Desktop Navigation -->
@@ -61,9 +61,11 @@
                     <li>
                         <a class="btn btn-ghost text-xl" href="{{ route('cats.index') }}">Browse Cats</a>
                     </li>
+                    @auth
                     <li>
                         <a class="btn btn-primary text-xl" href="{{ route('cats.create') }}">Add Cat</a>
                     </li>
+                    @endauth
                 </ul>
             </div>
 
@@ -122,11 +124,11 @@
         document.documentElement.setAttribute("data-theme", saved);
 
         // Set toggle UI
-        toggle.checked = saved === "synthwave";
+        toggle.checked = saved === "dracula";
 
         // Toggle handler
         toggle.addEventListener("change", () => {
-            const newTheme = toggle.checked ? "synthwave" : "light";
+            const newTheme = toggle.checked ? "dracula" : "light";
             localStorage.setItem("theme", newTheme);
             document.documentElement.setAttribute("data-theme", newTheme);
         });

@@ -18,5 +18,5 @@
 @source '../**/*.js';
 
 @plugin "daisyui" {
-    themes: silk --default, dark --prefersdark, synthwave;
+    themes: silk --default, dark --prefersdark, synthwave, dracula, dim;
 }
