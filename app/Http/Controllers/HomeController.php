@@ -25,4 +25,29 @@ class HomeController extends Controller
     {
         return view('home');
     }
+
+    /**
+     * Show the form for creating a new cat.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function create()
+    {
+        return view('cats.create'); // Make sure this view exists
+    }
+
+    /**
+     * Show the form for editing the specified cat.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function edit($id)
+    {
+        $cat = Cat::findOrFail($id);
+
+        // Optional: Add authorization to ensure user owns the cat
+        // $this->authorize('update', $cat);
+
+        return view('cats.edit', compact('cat')); // Make sure this view exists
+    }
 }

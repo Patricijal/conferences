@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ArticlesController;
 use App\Http\Controllers\CatsController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 use PharIo\Manifest\Author;
 
@@ -154,12 +155,6 @@ route::prefix('/user')->name('user.')->group(function () use ($users) {
 });
 
 Route::resource('articles', ArticlesController::class);
-//Route::get('articles/create', [ArticlesController::class, 'create'])->name('articles.create');
-//Route::post('articles/store', [ArticlesController::class, 'store'])->name('articles.store');
-
-// react / Vue.js (frontend)
-// laravel (backend)
-// frontend <-> backend - API / Inertia / livewire ajax Js i div ikisa turinio blokus
 
 Route::resource('cats', CatsController::class);
 

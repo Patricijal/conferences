@@ -16,12 +16,14 @@
                 <a href="{{ route('cats.show', ['cat' => $cat['id']]) }}">
                     <button type="button" class="btn btn-outline btn-accent">View Details</button>
                 </a>
+                @auth
                 <!-- Edit button -->
                 <a href="{{ route('cats.edit', ['cat' => $cat['id']]) }}">
                     <button type="button" class="btn btn-outline btn-info">Edit</button>
                 </a>
                 <!-- Delete button that opens modal -->
                 <button type="button" class="btn btn-outline btn-error" onclick="document.getElementById('delete_modal_{{ $cat['id'] }}').showModal()">Delete</button>
+                @endauth
             </div>
         </div>
     </div>

@@ -10,28 +10,10 @@ use Illuminate\Support\Str;
 
 class CatsController extends Controller
 {
-    /**
-     * @var array
-     */
-//    protected array $cats = [
-//        1 => [
-//            'name' => 'Gato',
-//            'breed' => 'Siamese',
-//            'age' => '1 year old',
-//            'gender' => 'Male',
-//            'description' => 'Lorem ipsum dolor sit amet.',
-//            'image' => 'cat1.jpg'
-//        ],
-//        2 => [
-//            'name' => 'Penelope',
-//            'breed' => 'Persian',
-//            'age' => '3 year old',
-//            'gender' => 'Female',
-//            'description' => 'Lorem ipsum dolor sit amet.',
-//            'image' => 'cat2.jpg'
-//        ]
-//    ];
-
+    public function __construct()
+    {
+        $this->middleware('auth')->except(['index', 'show']);
+    }
     /**
      * Display a listing of the resource.
      */

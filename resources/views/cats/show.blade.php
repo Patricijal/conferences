@@ -13,20 +13,22 @@
         <div class="card bg-base-100 w-180 shadow-xl">
             <div class="card-body">
                 <h1 class="text-3xl font-bold">{{ $cat['name'] }}</h1>
-                <h2 class="text-lg opacity-70">{{ $cat['breed'] }}</h2>
-                <h2 class="text-lg opacity-70">Age: {{ $cat['age'] }}</h2>
-                <h2 class="text-lg opacity-70">Gender: {{ $cat['gender'] }}</h2>
-                <p class="text-md">{{ $cat['description'] }}</p>
+                <h2 class="text-base opacity-70">{{ $cat['breed'] }}</h2>
+                <h2 class="text-base opacity-70">Age: {{ $cat['age'] }}</h2>
+                <h2 class="text-base opacity-70">{{ $cat['gender'] }}</h2>
+                <p class="text-lg">{{ $cat['description'] }}</p>
                 <img class="rounded-xl mt-4"
                      src="{{ asset('cat-images/' . $cat['image_path']) }}" />
-                <div class="card-actions justify-start">
+                <div class="card-actions justify-start mt-4">
                     <a href="{{ route('cats.index') }}">
                         <button class="btn btn-outline btn-accent">Back To Cats</button>
                     </a>
+                    @auth
                     <!-- Edit button -->
                     <a href="{{ route('cats.edit', ['cat' => $cat['id']]) }}">
                         <button type="button" class="btn btn-outline btn-info">Edit</button>
                     </a>
+                    @endauth
                 </div>
             </div>
         </div>
