@@ -26,16 +26,33 @@
                                 @enderror
                             </fieldset>
 
-                            <fieldset class="fieldset mb-4">
+                            <fieldset class="fieldset mb-4" x-data="{ show: false }">
                                 <legend class="fieldset-legend">Password</legend>
-                                <input
-                                    id="password"
-                                    type="password"
-                                    name="password"
-                                    required autocomplete="current-password"
-                                    class="input input-bordered w-full @error('password') input-error @enderror"
-                                    placeholder="••••••••"
-                                >
+                                <div class="relative w-full">
+                                    <input
+                                        id="password"
+                                        :type="show ? 'text' : 'password'"
+                                        name="password"
+                                        required autocomplete="current-password"
+                                        class="input input-bordered w-full @error('password') input-error @enderror"
+                                        placeholder="••••••••"
+                                    >
+                                    <!-- Toggle button -->
+                                    <button type="button"
+                                            @click="show = !show"
+                                            class="absolute inset-y-0 right-2 flex items-center px-2">
+
+                                        <!-- Show password -->
+                                        <img x-show="!show"
+                                             src="https://cdn-icons-png.flaticon.com/128/14070/14070523.png"
+                                             alt="Show password" class="h-6 w-6" />
+
+                                        <!-- Hide password -->
+                                        <img x-show="show"
+                                             src="https://cdn-icons-png.flaticon.com/128/9458/9458496.png"
+                                             alt="Hide password" class="h-6 w-6" />
+                                    </button>
+                                </div>
                                 @error('password')
                                 <p class="text-error mt-1">{{ $message }}</p>
                                 @enderror

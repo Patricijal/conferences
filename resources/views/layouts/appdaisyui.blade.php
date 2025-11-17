@@ -35,9 +35,9 @@
             <!-- Desktop Navigation -->
             <div class="navbar-center hidden lg:flex">
                 <ul class="menu menu-horizontal px-1 flex gap-4">
-                    <label class="swap swap-rotate">
-                        <!-- this hidden checkbox controls the state -->
-                        <input id="theme-toggle" type="checkbox" class="theme-controller" />
+                    <label class="swap swap-rotate" x-data="themeToggle()" x-init="init()">
+                        <input type="checkbox" x-model="isDracula" class="theme-controller" />
+
                         <!-- sun icon -->
                         <svg
                             class="swap-off h-10 w-10 fill-current"
@@ -116,21 +116,21 @@
 </html>
 
 <script>
-    document.addEventListener("DOMContentLoaded", () => {
-        const toggle = document.getElementById("theme-toggle");
-
-        // Load saved theme
-        const saved = localStorage.getItem("theme") || "light";
-        document.documentElement.setAttribute("data-theme", saved);
-
-        // Set toggle UI
-        toggle.checked = saved === "dracula";
-
-        // Toggle handler
-        toggle.addEventListener("change", () => {
-            const newTheme = toggle.checked ? "dracula" : "light";
-            localStorage.setItem("theme", newTheme);
-            document.documentElement.setAttribute("data-theme", newTheme);
-        });
-    });
+    function themeToggle() {
+        return {
+            isDracula: false,
+            init() {
+                // Load saved theme
+                const saved = localStorage.getItem('theme') || 'light';
+                this.isDracula = saved === 'dracula';
+                document.documentElement.setAttribute('data-theme', saved);
+                // Watch for changes
+                this.$watch('isDracula', value => {
+                    const newTheme = value ? 'dracula' : 'light';
+                    document.documentElement.setAttribute('data-theme', newTheme);
+                    localStorage.setItem('theme', newTheme);
+                });
+            }
+        }
+    }
 </script>
