@@ -10,23 +10,21 @@
             >
             <div class="absolute inset-0 bg-black/60"></div>
         </div>
-
         <div class="hero-content text-center text-white relative z-10">
             <div class="max-w-2xl">
-                <h1 class="mb-6 text-5xl md:text-7xl font-bold">Welcome</h1>
-
+                <h1 class="mb-6 text-5xl md:text-7xl font-bold">{{ __('app.home_header') }}</h1>
                 <p class="mb-6 text-xl md:text-2xl leading-relaxed">
                     {{ __('app.home_text') }}
                 </p>
                 @auth
                 <div class="mb-8">
                     <p class="text-lg md:text-xl font-semibold">
-                        {{ __('You are logged in!') }}
+                        {{ __('app.home_login') }}
                     </p>
                 </div>
                 @endauth
                 <a href="{{ route('cats.index') }}">
-                    <button class="btn btn-accent btn-xl px-8">Get Started</button>
+                    <button class="btn btn-accent btn-xl px-8">{{ __('app.home_button') }}</button>
                 </a>
             </div>
         </div>

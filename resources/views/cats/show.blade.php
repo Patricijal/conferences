@@ -19,21 +19,26 @@
     @endif
         <div class="card bg-base-100 w-180 shadow-xl">
             <div class="card-body">
+                <h2 class="card-actions justify-end text-base opacity-70">{{ __("app.upload_date", ["created_at" => $cat['created_at']->format('Y-m-d')]) }}</h2>
                 <h1 class="text-3xl font-bold">{{ $cat['name'] }}</h1>
                 <h2 class="text-base opacity-70">{{ $cat['breed'] }}</h2>
-                <h2 class="text-base opacity-70">Age: {{ $cat['age'] }}</h2>
+                <h2 class="text-base opacity-70">{{ __("app.age", ["age" => $cat['age']]) }}</h2>
                 <h2 class="text-base opacity-70">{{ $cat['gender'] }}</h2>
                 <p class="text-lg">{{ $cat['description'] }}</p>
                 <img class="rounded-xl mt-4"
                      src="{{ asset('cat-images/' . $cat['image_path']) }}" />
                 <div class="card-actions justify-start mt-4">
                     <a href="{{ route('cats.index') }}">
-                        <button class="btn btn-outline btn-accent">Back To Cats</button>
+                        <button class="btn btn-outline btn-accent">
+                            {{ __('app.back_button') }}
+                        </button>
                     </a>
                     @auth
                     <!-- Edit button -->
                     <a href="{{ route('cats.edit', ['cat' => $cat['id']]) }}">
-                        <button type="button" class="btn btn-outline btn-info">Edit</button>
+                        <button type="button" class="btn btn-outline btn-info">
+                            {{ __('app.edit_button') }}
+                        </button>
                     </a>
                     @endauth
                 </div>

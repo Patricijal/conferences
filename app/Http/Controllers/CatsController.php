@@ -19,10 +19,6 @@ class CatsController extends Controller
      */
     public function index(Cat $cat)
     {
-//        return view('cats.index', ['cats' => $this->cats])
-
-//        $cat = new Cat();
-
         return view('cats.index', ['cats' => $cat->all()]);
     }
 
@@ -39,12 +35,6 @@ class CatsController extends Controller
      */
     public function store(StoreCatRequest $request, Cat $cat)
     {
-//        dd([
-//            'hasFile' => $request->hasFile('image_path'),
-//            'file' => $request->file('image_path'),
-//            'all' => $request->all()
-//        ]);
-
         $validated = $request->validated();
         if ($request->hasFile('image_path')) {
             $validated['image_path'] = $this->storeImage($request->file('image_path'));
@@ -108,8 +98,6 @@ class CatsController extends Controller
      */
     public function show(int $id)
     {
-//        abort_if(!isset($this->cats[$id]), 404);
-//        return view('cats.show', ['cat' => $this->cats[$id]]);
         return view('cats.show', ['cat' => Cat::findOrFail($id)]);
     }
 

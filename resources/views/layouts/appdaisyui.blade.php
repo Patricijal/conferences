@@ -9,10 +9,6 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
-
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
@@ -59,11 +55,15 @@
 
                     <!-- Add your navigation items here if needed -->
                     <li>
-                        <a class="btn btn-ghost text-xl" href="{{ route('cats.index') }}">Browse Cats</a>
+                        <a class="btn btn-ghost text-xl" href="{{ route('cats.index') }}">
+                            {{ __('app.navbar_browse') }}
+                        </a>
                     </li>
                     @auth
                     <li>
-                        <a class="btn btn-primary text-xl" href="{{ route('cats.create') }}">Add Cat</a>
+                        <a class="btn btn-primary text-xl" href="{{ route('cats.create') }}">
+                            {{ __('app.navbar_add') }}
+                        </a>
                     </li>
                     @endauth
                 </ul>
@@ -74,14 +74,20 @@
                 <ul class="menu menu-horizontal px-1 flex gap-4">
                     @guest
                         @if (Route::has('login'))
-                            <li><a href="{{ route('login') }}" class="btn btn-ghost text-xl">{{ __('Login') }}</a></li>
+                            <li><a href="{{ route('login') }}" class="btn btn-ghost text-xl">
+                                    {{ __('app.login_button') }}
+                                </a>
+                            </li>
                         @endif
                         @if (Route::has('register'))
-                            <li><a href="{{ route('register') }}" class="btn btn-primary text-xl">{{ __('Register') }}</a></li>
+                            <li><a href="{{ route('register') }}" class="btn btn-primary text-xl">
+                                    {{ __('app.register_button') }}
+                                </a>
+                            </li>
                         @endif
                     @else
                         <div class="dropdown dropdown-end">
-                            <div tabindex="0" role="button" class="btn btn-ghost rounded-btn">
+                            <div tabindex="0" role="button" class="btn btn-ghost rounded-btn text-xl">
                                 {{ Auth::user()->name }}
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-1" viewBox="0 0 20 20" fill="currentColor">
                                     <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
@@ -89,10 +95,10 @@
                             </div>
                             <ul tabindex="0" class="menu dropdown-content z-[1] p-2 shadow bg-base-100 rounded-box w-52 mt-4">
                                 <li>
-                                    <a href="{{ route('logout') }}"
+                                    <a class="text-xl" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                        document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                        {{ __('app.navbar_logout') }}
                                     </a>
                                 </li>
                             </ul>

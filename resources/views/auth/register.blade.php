@@ -6,12 +6,16 @@
             <div class="col-md-8">
                 <div class="card bg-base-100 shadow-xl">
                     <div class="card-body">
-                        <h2 class="card-title text-2xl mb-4">Register</h2>
+                        <h2 class="card-title text-2xl mb-4">
+                            {{ __('app.register_title') }}
+                        </h2>
                         <form method="POST" action="{{ route('register') }}">
                             @csrf
 
                             <fieldset class="fieldset mb-4">
-                                <legend class="fieldset-legend">Full Name</legend>
+                                <legend class="fieldset-legend">
+                                    {{ __('app.register_name') }}
+                                </legend>
                                 <input
                                     id="name"
                                     type="text"
@@ -27,7 +31,9 @@
                             </fieldset>
 
                             <fieldset class="fieldset mb-4">
-                                <legend class="fieldset-legend">Email Address</legend>
+                                <legend class="fieldset-legend">
+                                    {{ __('app.register_email') }}
+                                </legend>
                                 <input
                                     id="email"
                                     type="email"
@@ -43,7 +49,9 @@
                             </fieldset>
 
                             <fieldset class="fieldset mb-4" x-data="{ show: false }">
-                                <legend class="fieldset-legend">Password</legend>
+                                <legend class="fieldset-legend">
+                                    {{ __('app.register_password') }}
+                                </legend>
                                 <div class="relative w-full">
                                     <input
                                         id="password"
@@ -75,7 +83,9 @@
                             </fieldset>
 
                             <fieldset class="fieldset mb-6" x-data="{ show: false }">
-                                <legend class="fieldset-legend">Confirm Password</legend>
+                                <legend class="fieldset-legend">
+                                    {{ __('app.register_confirm') }}
+                                </legend>
                                 <div class="relative w-full">
                                     <input
                                         id="password-confirm"
@@ -103,10 +113,12 @@
                                 </div>
                             </fieldset>
 
-                            <button type="submit" class="btn btn-primary w-full mb-4">Register</button>
+                            <button type="submit" class="btn btn-primary w-full mb-4">
+                                {{ __('app.register_button') }}
+                            </button>
 
                             <a class="link link-primary block text-center" href="{{ route('login') }}">
-                                Already have an account? Login here
+                                {{ __('app.register_already') }}
                             </a>
 
                         </form>

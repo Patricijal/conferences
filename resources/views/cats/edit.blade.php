@@ -9,7 +9,7 @@
             @method('PUT')
             @include('cats.partials.form')
             <div class="mt-6">
-                <input type="submit" class="btn btn-primary w-full" value="Update" id="submit-btn">
+                <input type="submit" class="btn btn-primary w-full" value="{{ __('app.update_button') }}" id="submit-btn">
             </div>
         </form>
 

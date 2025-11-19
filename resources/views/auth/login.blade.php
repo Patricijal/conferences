@@ -6,12 +6,16 @@
             <div class="col-md-8">
                 <div class="card bg-base-100 shadow-xl">
                     <div class="card-body">
-                        <h2 class="card-title text-2xl mb-4">Login</h2>
+                        <h2 class="card-title text-2xl mb-4">
+                            {{ __('app.login_title') }}
+                        </h2>
                         <form method="POST" action="{{ route('login') }}">
                             @csrf
 
                             <fieldset class="fieldset mb-4">
-                                <legend class="fieldset-legend">Email Address</legend>
+                                <legend class="fieldset-legend">
+                                    {{ __('app.login_email') }}
+                                </legend>
                                 <input
                                     id="email"
                                     type="email"
@@ -27,7 +31,9 @@
                             </fieldset>
 
                             <fieldset class="fieldset mb-4" x-data="{ show: false }">
-                                <legend class="fieldset-legend">Password</legend>
+                                <legend class="fieldset-legend">
+                                    {{ __('app.login_password') }}
+                                </legend>
                                 <div class="relative w-full">
                                     <input
                                         id="password"
@@ -61,7 +67,9 @@
                             <div class="form-control mb-4">
                                 <label class="label cursor-pointer">
                                     <input type="checkbox" name="remember" id="remember" class="checkbox" {{ old('remember') ? 'checked' : '' }}>
-                                    <span class="label-text ml-2">Remember Me</span>
+                                    <span class="label-text ml-2">
+                                        {{ __('app.login_remember') }}
+                                    </span>
                                 </label>
                             </div>
 
@@ -69,7 +77,7 @@
 
                             @if (Route::has('password.request'))
                                 <a class="link link-primary mt-4 block text-center" href="{{ route('password.request') }}">
-                                    Forgot Your Password?
+                                    {{ __('app.login_forgot') }}
                                 </a>
                             @endif
 

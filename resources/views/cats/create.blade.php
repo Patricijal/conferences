@@ -1,6 +1,6 @@
 @extends('layouts.appdaisyui')
 
-@section('name', 'Cat Form')
+@section('name', 'Cat Create Form')
 
 @section('content')
     <div class="flex flex-col items-center">
@@ -8,7 +8,7 @@
             @csrf
             @include('cats.partials.form')
             <div class="mt-6">
-                <input type="submit" class="btn btn-primary w-full" value="Create" id="submit-btn">
+                <input type="submit" class="btn btn-primary w-full" value="{{ __('app.create_button') }}" id="submit-btn">
             </div>
         </form>
 
